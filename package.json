@@ -1,0 +1,22 @@
+{
+  "name": "EmphemeralPaste",
+  "author": "Chris Feasey",
+  "description": "Short lived pastes",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "1.4.x",
+    "ejs": "^2.3.4",
+    "express": "4.6.x",
+    "jade": "1.4.x",
+    "socket.io": "1.0.x",
+    "underscore": "1.6.x"
+  },
+  "engines": {
+    "node": "0.12.5",
+    "npm": "1.x.x"
+  }
+}

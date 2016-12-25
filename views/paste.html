@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>hashbin</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/sjcl.js"></script>
+<script src="/js/sha256.js"></script>
+<script src="/js/public.js"></script>
+<script src="/js/CodeMirror/lib/codemirror.js"></script>
+<script src="/js/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="/js/CodeMirror/addon/search/searchcursor.js"></script>
+<script src="/js/CodeMirror/addon/search/search.js"></script>
+<script src="/js/CodeMirror/addon/dialog/dialog.js"></script>
+<script src="/js/CodeMirror/addon/edit/matchbrackets.js"></script>
+<script src="/js/CodeMirror/addon/edit/closebrackets.js"></script>
+<script src="/js/CodeMirror/addon/comment/comment.js"></script>
+<script src="/js/CodeMirror/addon/wrap/hardwrap.js"></script>
+<script src="/js/CodeMirror/addon/fold/foldcode.js"></script>
+<script src="/js/CodeMirror/addon/fold/brace-fold.js"></script>
+<script src="/js/CodeMirror/keymap/sublime.js"></script>
+<link rel="stylesheet" href="/js/CodeMirror/lib/codemirror.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<!-- CODE EDITOR STYLES-->
+<link rel="stylesheet" href="/js/CodeMirror/theme/monokai.css">
+</head>
+
+<body>
+
+<div id="page-wrapper">
+
+	<div id="live-banner" class="colorCycle"><span class="animated rubberBand"><span style="font-size:15px;">&#9679;</span> LIVE</span></div>
+
+    <div id="header-wrapper">
+        <div id="header-left">
+            <div id="logo-wrapper">
+                <div id="logo"><a href="/">hashbin</a></div><div id="sublogo">a <span data-tooltip="short-lived, user hosted pastes, you decide the time">ephemeral</span>, <span data-tooltip="your pastes are encrypted client side using AES-CCM-256">encrypted</span> pastebin</div>
+            </div>
+            <div id="menu">
+            	<a href="" class="about"><span class="menu-item">about</span></a>
+                <a href="" class="howto"><span class="menu-item">how to use</span></a>
+            </div>
+            
+            <div id="controls">password:&nbsp;<input type="text" name="password" id="passcode" class="formcontrol" value="password" required/><input type="submit" value="Decrypt" class="Btn2" id="decrypt"></div>
+        </div>
+        <div id="header-right">
+            <div id="chars">500000 chars left</div>
+        </div>
+    </div>
+    
+	<div id="content-wrapper">
+		<textarea id="paste" name="paste"></textarea>
+	</div>
+
+	<div id="panel-wrapper">
+		
+		<div id="results"></div>
+        
+        <div id="footer">&copy; hashbin.io 2016<br />v1.0.0</div>
+
+	</div>
+
+
+</div>
+
+<div id="about" class="modalDialog">
+    <div>	<a href="" title="Close" class="close">X</a>
+
+        	<h2>About</h2>
+
+        <p>Firstly, welcome to hashbin; I hope you find this service useful in some way or another.</p>
+        <p>Hashbin is a ephemeral - "short lived", encrypted - "AES-CCM-256" pastebin tool built with Javascript, NodeJS, SocketIO and a lot of red bull.</p>
+        <p>The basic priceipal of hashbin is that technically if noone is looking at a paste, it will disappear.</p>
+        <p>When you press encrypt and host, the paste gets encrypted and then stored in your browsers localStorage. As long as you are viewing the page anyone else who you give the link too will also recieve the content, then all you need to do is give them the password and they have the content.</p>
+        <p>If you leave the page your localContent will be cleared meaning you will loose the paste. But if you gave it to anyone and they are still online, you can recieve it back if you wanted too.</p>
+
+    </div>
+</div>
+<div id="howto" class="modalDialog">
+    <div>	<a href="" title="Close" class="close">X</a>
+        <div style="height:400px;overflow:scroll;">
+                <h2>How To Use</h2>
+    
+            <p>Instead of writing what to do I thought some tedious GIFs would do the trick.</p>
+            <p>To start off, begin writing your paste. Whether that be code or leaks (we don't care, 0% is hosted by us, 100% by you, honestly).</p>
+            <p><img src="/images/howto1.gif" /></p>
+            <p>Then either use the given password or choose your own and press "encrypt and start hosting".</p>
+            <p><img src="/images/howto2.gif" /></p>
+            <p>Copy the newly generated URL and give it to a friend along with the password you chose.</p>
+            <p><img src="/images/howto3.gif" /></p>
+            <p>Your friend or anyone else with the link who lands on the page will download the paste from you and store it.</p>
+            <p><img src="/images/howto4.gif" /></p>
+            <p>After entering in the password you gave out the paste will be decrypted and it will be revealed.</p>
+            <p><img src="/images/howto5.gif" /></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
